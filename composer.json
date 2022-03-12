@@ -1,0 +1,21 @@
+{
+    "name": "mmmsafry/mars-rover-assesstment",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Safry",
+            "email": "mmmsafry@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Application\\": "src/"
+        }
+    },
+    "require": {
+      "php": ">= 8.1"
+    },
+    "require-dev": {
+    
+    }
+}
