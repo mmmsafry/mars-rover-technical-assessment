@@ -1,5 +1,26 @@
 # Mars Rover Technical Assessment
 
+## Pre-request
+- PHP >= 8.1
+
+## Project installation & How to Test
+- cloning repo
+```bash
+git clone https://github.com/mmmsafry/mars-rover-technical-assessment
+```
+
+Install dependencies using composer
+```bash
+composer install
+```
+
+Run the project in terminal 
+
+```bash
+php .\src\app.php
+```
+
+
 ### Specification
 
 A squad of robotic rovers is to be landed by NASA on a plateau on Mars.
@@ -53,21 +74,4 @@ MMRMMRMRRM
 1 3 N
 
 5 1 E
-
-## Pre-request 
-- PHP >= 8.0
-
-## Project instalation & How to Test 
-- cloning repo
-```bash
-git clone https://github.com/mmmsafry/mars-rover-technical-assessment
-```
-
-Install dependencies using composer
-```bash
-composer install
-```
-
-
-## Directory Structure 
 
