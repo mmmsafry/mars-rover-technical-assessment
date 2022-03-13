@@ -28,14 +28,4 @@ class Output
     {
         return $this->coordinate->getX() . " " . $this->coordinate->getY() . " " . $this->orientation->getOrientation();
     }
-
-    public function getCoordinate()
-    {
-        return $this->coordinate;
-    }
-
-    public function getDirection()
-    {
-        return $this->orientation;
-    }
 }

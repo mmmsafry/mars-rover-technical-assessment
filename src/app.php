@@ -11,7 +11,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 echo "Please provide plateau data" . PHP_EOL;
 $plateauInputs = fgets(STDIN);
 
-$output = [];
+$output = null;
 
 if (STDIN) {
 
@@ -25,12 +25,15 @@ if (STDIN) {
         $roverData = RoverInput::input($roverInput);
         $rover = new Rover($roverData['roverPosition'], $roverData['roverCoordinates']);
         $newPosition = $rover->processInstruction($roverControls);
-        $output = new Output($newPosition);
-        echo $output->toString();
+        $outputObject = new Output($newPosition);
+        $output = $outputObject->toString();
 
     } catch (Exception $e) {
         echo $e->getMessage();
     }
+
+    echo "Result" . PHP_EOL;
+    echo $output . PHP_EOL;
 
 
 }
