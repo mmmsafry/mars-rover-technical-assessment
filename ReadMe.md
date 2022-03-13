@@ -19,7 +19,7 @@ Run the project in terminal
 ```bash
 php .\src\app.php
 ```
-
+![copy `appTestInstuction`](TestInstuction.png "copy `TestInstuction`")
 
 ### Specification
 
