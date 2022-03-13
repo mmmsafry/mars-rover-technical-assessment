@@ -4,6 +4,8 @@
 namespace Application\Control;
 
 
+use Application\Model\Coordinate;
+use Application\Model\Direction;
 use InvalidArgumentException;
 
 class Move
@@ -13,10 +15,23 @@ class Move
     const GRID_POINT = 1;
 
     /**
-     * Move constructor.
-     * @param $command
+     * @var string
      */
-    public function __construct($command)
+    private $direction;
+
+    /**
+     * @var Coordinate
+     */
+    private $coordinate;
+
+    /**
+     * Move constructor.
+     * @param string $command
+     * @param string $direction
+     * @param Coordinate $coordinate
+     * @throws \Exception
+     */
+    public function __construct($command, $direction, Coordinate $coordinate)
     {
         if (!in_array($command, [self::MOVE])) {
             throw new InvalidArgumentException(sprintf(
@@ -25,15 +40,30 @@ class Move
                 implode(',', [self::MOVE])
             ));
         }
+        $this->direction = $direction;
+        $this->coordinate = $coordinate;
     }
 
+
     /**
-     * @param $value
-     * @return int
+     * @return Coordinate
+     * @throws \Exception
      */
-    public function factor($value)
+    public function moveRover()
     {
-        return self::GRID_POINT * $value;
+        switch ($this->direction) {
+            case Direction::NORTH:
+                return new Coordinate($this->coordinate->getX(), ($this->coordinate->getY() + self::GRID_POINT));
+
+            case Direction::WEST:
+                return new Coordinate(($this->coordinate->getX() - self::GRID_POINT), $this->coordinate->getY());
+
+            case Direction::EAST:
+                return new Coordinate(($this->coordinate->getX() + self::GRID_POINT), $this->coordinate->getY());
+
+            case Direction::SOUTH:
+                return new Coordinate($this->coordinate->getX(), ($this->coordinate->getY() - self::GRID_POINT));
+        }
     }
 
 }
