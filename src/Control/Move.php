@@ -46,23 +46,23 @@ class Move
 
 
     /**
-     * @return Coordinate
+     * @return string
      * @throws \Exception
      */
     public function moveRover()
     {
         switch ($this->direction) {
             case Direction::NORTH:
-                return new Coordinate($this->coordinate->getX(), ($this->coordinate->getY() + self::GRID_POINT));
+                return $this->coordinate->getX() . " " . ($this->coordinate->getY() + self::GRID_POINT) . " " . $this->direction;
 
             case Direction::WEST:
-                return new Coordinate(($this->coordinate->getX() - self::GRID_POINT), $this->coordinate->getY());
+                return ($this->coordinate->getX() - self::GRID_POINT) . " " . $this->coordinate->getY() . " " . $this->direction;
 
             case Direction::EAST:
-                return new Coordinate(($this->coordinate->getX() + self::GRID_POINT), $this->coordinate->getY());
+                return ($this->coordinate->getX() + self::GRID_POINT) . " " . $this->coordinate->getY() . " " . " " . $this->direction;
 
             case Direction::SOUTH:
-                return new Coordinate($this->coordinate->getX(), ($this->coordinate->getY() - self::GRID_POINT));
+                return $this->coordinate->getX() . " " . ($this->coordinate->getY() - self::GRID_POINT) . " " . $this->direction;
         }
     }
 

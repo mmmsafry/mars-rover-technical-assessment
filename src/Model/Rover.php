@@ -42,22 +42,19 @@ class Rover
 
         $newCoordinate = $this->coordinate;
         $newOrientation = $this->position->getOrientation();
+        $newOutput = '';
 
-        foreach ($commands as $key => $command) {
-            echo PHP_EOL;
-            echo $key . '-' . $command . '-' . $newOrientation .'-'. $this->coordinate->getX() .'-'.  $this->coordinate->getY();
-
-            echo PHP_EOL;
-            if ($command === "M") {
-                $move = new Move($command, $newOrientation, $this->coordinate);
-                $newCoordinate = $move->moveRover();
+        foreach ($commands as $command) {
+            if ($command == "M") {
+                $move = new Move($command, $newOrientation, $newCoordinate);
+                $newOutput = $move->moveRover();
             } else {
                 $spin = new Spin($command, $newOrientation);
                 $newOrientation = $spin->getOrientation();
             }
         }
 
-        return $newCoordinate->getX() . ' ' . $newCoordinate->getX() . " " . $newOrientation;
+        return $newOutput;
     }
 
 }
