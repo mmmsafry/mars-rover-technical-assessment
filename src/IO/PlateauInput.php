@@ -7,26 +7,26 @@ namespace Application\IO;
 use Application\Model\Coordinate;
 use InvalidArgumentException;
 
-class Input
+class PlateauInput
 {
 
     /**
      * @param $input
      * @return Coordinate
      */
-    public static function plateauInput($input)
+    public static function input($input)
     {
-        $plateauBorders = explode(' ', trim($input));
+        $plateauGridData = explode(' ', trim($input));
 
-        if (count($plateauBorders) !== 2) {
+        if (count($plateauGridData) !== 2) {
             throw new InvalidArgumentException('Expecting X and Y (integer)');
         }
 
-        if (!self::validateDigit($plateauBorders)) {
-            throw new InvalidArgumentException(sprintf('Input must be Integer, Expected Input (int(X) int(Y)) given %s', implode(' ', $inputArray)));
+        if (!self::validateDigit($plateauGridData)) {
+            throw new InvalidArgumentException(sprintf('Input must be Integer, Expected Input (int(X) int(Y)) given %s', implode(' ', $plateauGridData)));
         }
 
-        return new Coordinate($plateauBorders[0], $plateauBorders[1]);
+        return new Coordinate($plateauGridData[0], $plateauGridData[1]);
 
     }
 
