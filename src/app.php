@@ -19,7 +19,7 @@ if (STDIN) {
     $coordinateInput = explode(" ", $plateauInputs);
     $coordinates = new Coordinate($coordinateInput[0], $coordinateInput[1]);
 
-    print_r($coordinates);
+
 
 }
 
