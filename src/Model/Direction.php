@@ -10,37 +10,24 @@ class Direction
     const EAST = "E";
     const SOUTH = "S";
 
-    private $direction = "";
+    private $orientation = "";
 
-    /**
-     * @return string
-     */
-    public function getOrientation()
+    public function getOrientation(): string
     {
-        return $this->direction;
+        return $this->orientation;
     }
 
-    /**
-     * Direction constructor.
-     * @param $direction
-     * @throws \Exception
-     */
-    public function __construct($direction)
+    public function __construct(string $orientation)
     {
-        $direction = trim($direction);
-        if ($this->isValid($direction)) {
-            $this->direction = $direction;
+        $orientation = trim($orientation);
+        if ($this->isValid($orientation)) {
+            $this->orientation = $orientation;
             return;
         }
-        throw new \Exception("Invalid input direction given: " . $direction);
+        throw new \Exception("Invalid Orientation, given: " . $orientation);
     }
 
-
-    /**
-     * @param $orientation
-     * @return bool
-     */
-    private function isValid($orientation)
+    private function isValid($orientation): bool
     {
         return in_array(
             $orientation,

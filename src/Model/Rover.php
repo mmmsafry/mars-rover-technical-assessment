@@ -4,57 +4,63 @@
 namespace Application\Model;
 
 
-use Application\Control\Move;
-use Application\Control\Spin;
+use Application\Control\CommandsCollection;
 
-class Rover
+class Rover extends \ArrayObject
 {
 
     /**
-     * @var Direction
+     * @var RoverSetup
      */
-    private $position;
-    /**
-     * @var Coordinate
-     */
-    private $coordinate;
-
+    private $Setup;
 
     /**
-     * Rover constructor.
-     * @param Direction $roverPosition
-     * @param Coordinate $roverCoordinate
+     * @return RoverSetup
      */
-    public function __construct(Direction $roverPosition, Coordinate $roverCoordinate)
+    public function getSetup()
     {
-        $this->position = $roverPosition;
-        $this->coordinate = $roverCoordinate;
+        return $this->Setup;
     }
 
     /**
-     * @param $roverInstruction
-     * @return string
-     * @throws \Exception
+     * @var CommandsCollection
      */
-    public function processInstruction($roverInstruction)
+    private $Commands;
+
+    /**
+     * @param CommandsCollection $Commands
+     */
+    public function setCommands(CommandsCollection $Commands)
     {
-        $commands = str_split(trim($roverInstruction));
+        $this->Commands = $Commands;
+    }
 
-        $newCoordinate = $this->coordinate;
-        $newOrientation = $this->position->getOrientation();
-        $newOutput = '';
+    /**
+     * @param RoverSetup $RoverSetup
+     */
+    public function setSetup(RoverSetup $RoverSetup)
+    {
+        $this->Setup = $RoverSetup;
+    }
 
-        foreach ($commands as $command) {
-            if ($command == "M") {
-                $move = new Move($command, $newOrientation, $newCoordinate);
-                $newOutput = $move->moveRover();
-            } else {
-                $spin = new Spin($command, $newOrientation);
-                $newOrientation = $spin->getOrientation();
-            }
+    public function execute()
+    {
+        $Iterator = $this->Commands->getIterator();
+
+        $Iterator->rewind();
+
+        while ($Iterator->valid()) {
+            $Command = $Iterator->current();
+            $Command->execute($this);
+            $Iterator->next();
         }
-
-        return $newOutput;
     }
 
+    /**
+     * @return string
+     */
+    public function getSetupAsString()
+    {
+        return $this->Setup->toString();
+    }
 }
