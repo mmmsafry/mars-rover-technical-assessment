@@ -18,8 +18,6 @@ if (STDIN) {
     $coordinate = new Coordinate($plateauBorders[0], $plateauBorders[1]);
     $plateau = new Plateau($coordinate);
 
-    print_r($plateau);
-
     echo "Please provide rover coordinates data (eg: 1 2 N) and Control instruction eg: LMLMLMLMM" . PHP_EOL;
 
     $roverSquad = new RoverSquad();
